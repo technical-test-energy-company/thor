@@ -1,0 +1,23 @@
+services:
+  app:
+    container_name: thor
+    build:
+      context: ./docker
+      dockerfile: thor.dockerfile
+    volumes:
+      - .:/var/www/html/thor
+    depends_on:
+      - postgres
+    ports:
+      - 8000:8000
+    command: composer local
+
+  postgres:
+    container_name: odin
+    image: postgres:latest
+    environment:
+      - POSTGRES_DB=odin
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 5432:5432
