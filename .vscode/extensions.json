@@ -1,5 +1,6 @@
 {
   "recommendations": [
+    "bmewburn.vscode-intelephense-client",
     "laravel.vscode-laravel",
   ],
 }
