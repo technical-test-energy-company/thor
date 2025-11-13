@@ -1,8 +1,8 @@
 <?php
 
-use App\Enums\Asset\AssetDeviceType;
-use App\Enums\Asset\AssetRisk;
-use App\Enums\Asset\AssetStatus;
+use App\Asset\Enums\AssetDeviceType;
+use App\Asset\Enums\AssetRisk;
+use App\Asset\Enums\AssetStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

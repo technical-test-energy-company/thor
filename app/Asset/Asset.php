@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace App\Asset;
 
-use App\Enums\Asset\AssetDeviceType;
-use App\Enums\Asset\AssetRisk;
-use App\Enums\Asset\AssetStatus;
+use App\Asset\Enums\AssetDeviceType;
+use App\Asset\Enums\AssetRisk;
+use App\Asset\Enums\AssetStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 

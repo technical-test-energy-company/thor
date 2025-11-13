@@ -1,10 +1,10 @@
 <?php
 
-use App\Exceptions\ExceptionHandler;
-use App\Http\Middleware\ForceAcceptJsonHeader;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Infrastructure\Exceptions\ExceptionHandler;
+use Infrastructure\Http\Middleware\ForceAcceptJsonHeader;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(

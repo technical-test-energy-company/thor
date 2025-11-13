@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exceptions;
+namespace Infrastructure\Exceptions;
 
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Http\Request;

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AssetController;
+use App\Asset\AssetController;
 use Illuminate\Support\Facades\Route;
 
 Route::apiResource('assets', AssetController::class);

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Enums\Asset;
+namespace App\Asset\Enums;
 
 enum AssetDeviceType: string
 {

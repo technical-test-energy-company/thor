@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Enums\Asset\AssetDeviceType;
-use App\Enums\Asset\AssetRisk;
-use App\Enums\Asset\AssetStatus;
-use App\Models\Asset;
+use App\Asset\Asset;
+use App\Asset\Enums\AssetDeviceType;
+use App\Asset\Enums\AssetRisk;
+use App\Asset\Enums\AssetStatus;
 use Illuminate\Database\Seeder;
 
 class AssetSeeder extends Seeder
