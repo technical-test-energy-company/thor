@@ -12,6 +12,8 @@ class Asset extends Model
 {
     private const ID_PREFIX = 's';
 
+    public const ROUTE_KEY = 'uid';
+
     protected $fillable = [
         'uid',
         'name',
@@ -31,6 +33,11 @@ class Asset extends Model
         'risk' => AssetRisk::class,
         'risk_score' => 'float',
     ];
+
+    public function getRouteKeyName(): string
+    {
+        return self::ROUTE_KEY;
+    }
 
     protected static function boot()
     {
