@@ -12,7 +12,7 @@ class Asset extends Model
 {
     private const ID_PREFIX = 's';
 
-    public const ROUTE_KEY = 'uid';
+    private const ROUTE_KEY = 'uid';
 
     protected $fillable = [
         'uid',
