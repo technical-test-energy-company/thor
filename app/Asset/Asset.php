@@ -39,7 +39,7 @@ class Asset extends Model
         return self::ROUTE_KEY;
     }
 
-    protected static function boot()
+    protected static function boot(): void
     {
         parent::boot();
 
