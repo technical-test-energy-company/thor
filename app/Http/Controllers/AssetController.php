@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Collection;
 class AssetController extends Controller
 {
     // public function index(): Collection
-    public function index(): String
+    public function index(): string
     {
         return 'ok';
         // return Asset::all();
