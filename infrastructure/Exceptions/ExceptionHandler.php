@@ -13,11 +13,11 @@ class ExceptionHandler
 
     public static function handle(Exceptions $exceptions): void
     {
-        $exceptions->render(function (Throwable $e, Request $request) {
+        $exceptions->render(function (Throwable $e, Request $request): void {
             $request->attributes->set(self::EXCEPTION_MESSAGE, $e->getMessage());
         });
 
-        $exceptions->respond(function (Response $response) {
+        $exceptions->respond(function (Response $response): Response {
             $request = request();
             $message = $request->attributes->get(self::EXCEPTION_MESSAGE);
 
