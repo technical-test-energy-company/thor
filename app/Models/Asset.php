@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 
 class Asset extends Model
 {
-    const ID_PREFIX = 's';
+    private const ID_PREFIX = 's';
 
     protected $fillable = [
         'uid',
