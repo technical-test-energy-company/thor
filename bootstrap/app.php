@@ -1,5 +1,7 @@
 <?php
 
+use App\Exceptions\ExceptionHandler;
+use App\Http\Middleware\ForceAcceptJsonHeader;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -10,12 +12,11 @@ return Application::configure(basePath: dirname(__DIR__))
         apiPrefix: '',
         health: '/up',
     )
-    // ->withMiddleware(fn (Middleware $middleware) => null)
-    // ->withExceptions(fn (Exceptions $exceptions) => null)
-    // ->create();
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        $middleware->prepend([
+            ForceAcceptJsonHeader::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        //
+        ExceptionHandler::handle($exceptions);
     })->create();
