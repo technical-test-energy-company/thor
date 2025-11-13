@@ -15,6 +15,7 @@ services:
   postgres:
     container_name: odin
     image: postgres:latest
+    restart: always
     environment:
       - POSTGRES_DB=odin
       - POSTGRES_USER=postgres
