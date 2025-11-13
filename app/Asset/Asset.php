@@ -43,11 +43,11 @@ class Asset extends Model
     {
         parent::boot();
 
-        static::creating(function ($asset) {
+        static::creating(function ($asset): void {
             $asset->uid = Str::uuid();
         });
 
-        static::created(function ($asset) {
+        static::created(function ($asset): void {
             $asset->uid = self::ID_PREFIX.$asset->id;
             $asset->saveQuietly();
         });
