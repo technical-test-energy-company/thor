@@ -14,6 +14,6 @@
   "[php]": {
     "editor.formatOnSave": true,
     "editor.tabSize": 4,
-    "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+    "editor.defaultFormatter": "laravel.vscode-laravel",
   },
 }
