@@ -5,19 +5,12 @@ namespace App\Asset;
 use App\Asset\Enums\AssetDeviceType;
 use App\Asset\Enums\AssetRisk;
 use App\Asset\Enums\AssetStatus;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-use Infrastructure\Constants\Constants;
+use Infrastructure\Model\BaseModel;
 
-class Asset extends Model
+class Asset extends BaseModel
 {
     private const ID_PREFIX = 's';
-
-    private const ROUTE_KEY = 'uid';
-
-    protected $hidden = [
-        Constants::ID,
-    ];
 
     protected $fillable = [
         'uid',
