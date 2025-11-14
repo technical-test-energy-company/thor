@@ -4,7 +4,7 @@ namespace Infrastructure\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ListRequest extends FormRequest
+class IndexRequest extends FormRequest
 {
     private const DEFAULT_LIMIT = 100;
 
