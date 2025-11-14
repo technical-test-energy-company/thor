@@ -3,10 +3,13 @@
 namespace Infrastructure\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Infrastructure\Constants\Constants;
 
 class BaseModel extends Model
 {
+    use SoftDeletes;
+
     protected const ROUTE_KEY = 'uid';
 
     protected $hidden = [
