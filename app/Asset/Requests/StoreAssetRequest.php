@@ -8,7 +8,7 @@ use App\Asset\Enums\AssetStatus;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class CreateAssetRequest extends FormRequest
+class StoreAssetRequest extends FormRequest
 {
     public function rules(): array
     {
