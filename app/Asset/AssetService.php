@@ -10,8 +10,7 @@ class AssetService
     public function index($data): CursorPaginator
     {
         $limit = $data['limit'];
-
-        return Asset::orderBy(Constants::ID)->cursorPaginate($limit);
+        $response = Asset::orderBy(Constants::ID)->cursorPaginate($limit);
 
         return $response;
     }
