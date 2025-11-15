@@ -21,7 +21,7 @@ class AssetController extends Controller
     /**
      * List all available Assets.
      *
-     * @response array{data: Asset[], path: string, per_page: int, next_cursor: string|null, next_page_url: string|null, prev_cursor: string|null, prev_page_url: string|null}
+     * @response array{data: Asset[], path: string, per_page: int, next_cursor: string|null, next_page_url: string|null, prev_cursor: string|null, prev_page_url: string|null}|array{}
      */
     #[QueryParameter('limit', default: IndexRequest::DEFAULT_LIMIT)]
     public function index(IndexRequest $request): Response
