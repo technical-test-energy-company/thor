@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class IndexRequest extends FormRequest
 {
-    private const DEFAULT_LIMIT = 100;
+    public const DEFAULT_LIMIT = 100;
 
     protected function prepareForValidation(): void
     {
@@ -18,7 +18,7 @@ class IndexRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'limit' => 'integer|min:1',
+            'limit' => 'integer|nullable|min:1',
             'cursor' => 'string|nullable',
         ];
     }
