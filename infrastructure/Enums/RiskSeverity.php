@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Asset\Enums;
+namespace Infrastructure\Enums;
 
-enum AssetRisk: string
+enum RiskSeverity: string
 {
     case Low = 'low';
     case Medium = 'medium';

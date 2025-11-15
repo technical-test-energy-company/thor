@@ -1,11 +1,11 @@
 <?php
 
 use App\Asset\Enums\AssetDeviceType;
-use App\Asset\Enums\AssetRisk;
 use App\Asset\Enums\AssetStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Infrastructure\Enums\RiskSeverity;
 
 return new class extends Migration
 {
@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('location', length: 2);
             $table->enum('status', AssetStatus::cases());
             $table->string('supplier', length: 100);
-            $table->enum('risk', AssetRisk::cases());
+            $table->enum('risk', RiskSeverity::cases());
             $table->decimal('risk_score');
             $table->timestamps();
             $table->softDeletes();
