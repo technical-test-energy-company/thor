@@ -11,9 +11,9 @@ use Tests\TestCase;
 
 class AssetControllerTest extends TestCase
 {
+    // AssetController.index
     public function test_asset_index_returns_empty_array_when_no_results_found(): void
     {
-
         // given
         $route = '/api/assets';
         $paginator = new CursorPaginator(
@@ -56,5 +56,37 @@ class AssetControllerTest extends TestCase
         $response->assertStatus(Response::HTTP_OK);
         $response->assertJsonCount(2, 'data');
         $response->assertJson($paginator->toArray());
+    }
+
+    // AssetController.store
+    public function test_asset_store_should_return_new_asset_when_created(): void
+    {
+        // given
+        $route = '/api/assets';
+        $item = Asset::factory()->make();
+
+        $this->mock(AssetService::class, function ($mock) use ($item): void {
+            $mock->shouldReceive('store')->once()->andReturn($item);
+        });
+
+        // when
+        $response = $this->post($route, $item->toArray());
+
+        // then
+        $response->assertStatus(Response::HTTP_CREATED);
+        $response->assertJson($item->toArray());
+    }
+
+    public function test_asset_store_should_throw_when_malformed_json_input(): void
+    {
+        // given
+        $route = '/api/assets';
+        $payload = [];
+
+        // when
+        $response = $this->post($route, $payload);
+
+        // then
+        $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
     }
 }
