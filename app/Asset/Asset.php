@@ -3,13 +3,16 @@
 namespace App\Asset;
 
 use App\Asset\Enums\AssetDeviceType;
-use App\Asset\Enums\AssetRisk;
 use App\Asset\Enums\AssetStatus;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Str;
+use Infrastructure\Enums\RiskSeverity;
 use Infrastructure\Model\BaseModel;
 
 class Asset extends BaseModel
 {
+    use HasFactory;
+
     private const ID_PREFIX = 's';
 
     protected $fillable = [
@@ -28,7 +31,7 @@ class Asset extends BaseModel
     protected $casts = [
         'device_type' => AssetDeviceType::class,
         'status' => AssetStatus::class,
-        'risk' => AssetRisk::class,
+        'risk' => RiskSeverity::class,
         'risk_score' => 'float',
     ];
 
