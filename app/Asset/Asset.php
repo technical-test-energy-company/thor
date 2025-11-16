@@ -38,11 +38,6 @@ class Asset extends BaseModel
         'risk_score' => 'float',
     ];
 
-    public function getRouteKeyName(): string
-    {
-        return Constants::PUBLIC_ID;
-    }
-
     protected static function boot(): void
     {
         parent::boot();

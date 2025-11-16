@@ -16,4 +16,9 @@ class BaseModel extends Model
         Constants::UPDATED_AT,
         Constants::DELETED_AT,
     ];
+
+    public function getRouteKeyName(): string
+    {
+        return Constants::PUBLIC_ID;
+    }
 }
