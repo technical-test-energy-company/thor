@@ -8,5 +8,8 @@
     "concat_space": {
       "spacing": "none"
     }
-  }
+  },
+  "exclude": [
+    "app/Topology/TopologyController.php"
+  ]
 }
