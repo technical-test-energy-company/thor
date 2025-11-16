@@ -89,4 +89,33 @@ class AssetControllerTest extends TestCase
         // then
         $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
     }
+
+    // AssetController.show
+    public function test_asset_store_should_return_found_asset_when_exists(): void
+    {
+        // given
+        $item = Asset::factory()->create();
+        $id = $item->uid;
+        $route = "/api/assets/$id";
+
+        // when
+        $response = $this->get($route);
+
+        // then
+        $response->assertStatus(Response::HTTP_OK);
+        $response->assertJson($item->toArray());
+    }
+
+    public function test_asset_store_should_return_not_found_asset_when_does_not_exist(): void
+    {
+        // given
+        $id = 1;
+        $route = "/api/assets/$id";
+
+        // when
+        $response = $this->get($route);
+
+        // then
+        $response->assertStatus(Response::HTTP_NOT_FOUND);
+    }
 }
