@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Asset;
 
 use App\Asset\Asset;
 use App\Asset\Enums\AssetDeviceType;
