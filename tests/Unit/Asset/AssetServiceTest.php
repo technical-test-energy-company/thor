@@ -88,6 +88,6 @@ class AssetServiceTest extends TestCase
         $this->assetService->destroy($asset);
 
         // then
-        $this->assertDatabaseMissing('assets', $asset->toArray());
+        $this->assertSoftDeleted('assets', $asset->toArray());
     }
 }
