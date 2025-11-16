@@ -2,13 +2,6 @@
 
 namespace App\Topology\Model;
 
-use Illuminate\Database\Eloquent\Model;
+use Infrastructure\Model\ReadOnlyModel;
 
-class TopologyEdge extends Model
-{
-    public $timestamps = false;
-
-    public $incrementing = false;
-
-    protected $keyType = 'string';
-}
+class TopologyEdge extends ReadOnlyModel {}

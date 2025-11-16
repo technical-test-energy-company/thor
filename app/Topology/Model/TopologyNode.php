@@ -2,16 +2,10 @@
 
 namespace App\Topology\Model;
 
-use Illuminate\Database\Eloquent\Model;
+use Infrastructure\Model\ReadOnlyModel;
 
-class TopologyNode extends Model
+class TopologyNode extends ReadOnlyModel
 {
-    public $timestamps = false;
-
-    public $incrementing = false;
-
-    protected $keyType = 'string';
-
     public function toArray()
     {
         $data = parent::toArray();
