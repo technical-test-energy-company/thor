@@ -7,7 +7,6 @@ use App\Asset\AssetService;
 use Illuminate\Pagination\CursorPaginator;
 use Infrastructure\Http\Requests\IndexRequest;
 use PHPUnit\Framework\Attributes\DataProvider;
-use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
 
 final class AssetControllerTest extends TestCase
@@ -31,8 +30,8 @@ final class AssetControllerTest extends TestCase
         $response = $this->get($route);
 
         // then
-        $response->assertStatus(Response::HTTP_OK);
         $response->assertJson([]);
+        $response->assertOk();
     }
 
     public function test_asset_index_returns_all_found_items_when_found(): void
@@ -54,9 +53,9 @@ final class AssetControllerTest extends TestCase
         $response = $this->get($route);
 
         // then
-        $response->assertStatus(Response::HTTP_OK);
-        $response->assertJsonCount(2, 'data');
         $response->assertJson($paginator->toArray());
+        $response->assertJsonCount(2, 'data');
+        $response->assertOk();
     }
 
     // AssetController.store
@@ -74,8 +73,8 @@ final class AssetControllerTest extends TestCase
         $response = $this->post($route, $item->toArray());
 
         // then
-        $response->assertStatus(Response::HTTP_CREATED);
         $response->assertJson($item->toArray());
+        $response->assertCreated();
     }
 
     public function test_asset_store_should_throw_when_malformed_json_input(): void
@@ -88,7 +87,7 @@ final class AssetControllerTest extends TestCase
         $response = $this->post($route, $payload);
 
         // then
-        $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
+        $response->assertUnprocessable();
     }
 
     // AssetController.show
@@ -103,8 +102,8 @@ final class AssetControllerTest extends TestCase
         $response = $this->get($route);
 
         // then
-        $response->assertStatus(Response::HTTP_OK);
         $response->assertJson($item->toArray());
+        $response->assertOk();
     }
 
     public function test_asset_store_should_return_not_found_asset_when_it_does_not_exist(): void
@@ -117,7 +116,7 @@ final class AssetControllerTest extends TestCase
         $response = $this->get($route);
 
         // then
-        $response->assertStatus(Response::HTTP_NOT_FOUND);
+        $response->assertNotFound();
     }
 
     // AssetController.update
@@ -137,8 +136,8 @@ final class AssetControllerTest extends TestCase
         $response = $this->put($route, $newItem->toArray());
 
         // then
-        $response->assertStatus(Response::HTTP_OK);
         $response->assertJson($newItem->toArray());
+        $response->assertOk();
     }
 
     #[DataProvider('assetUpdateDataProvider')]
@@ -154,7 +153,7 @@ final class AssetControllerTest extends TestCase
         $response = $this->put($route, $payload);
 
         // then
-        $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
+        $response->assertUnprocessable();
     }
 
     public function test_asset_update_should_return_not_found_asset_when_it_does_not_exist(): void
@@ -168,7 +167,7 @@ final class AssetControllerTest extends TestCase
         $response = $this->put($route, $item->toArray());
 
         // then
-        $response->assertStatus(Response::HTTP_NOT_FOUND);
+        $response->assertNotFound();
     }
 
     // AssetController.destroy
@@ -186,7 +185,7 @@ final class AssetControllerTest extends TestCase
         $response = $this->delete($route);
 
         // then
-        $response->assertStatus(Response::HTTP_NO_CONTENT);
+        $response->assertNoContent();
     }
 
     public function test_asset_destroy_should_return_not_found_asset_when_it_does_not_exist(): void {
@@ -198,7 +197,7 @@ final class AssetControllerTest extends TestCase
         $response = $this->delete($route);
 
         // then
-        $response->assertStatus(Response::HTTP_NOT_FOUND);
+        $response->assertNotFound();
     }
 
     public static function assetUpdateDataProvider(): array
