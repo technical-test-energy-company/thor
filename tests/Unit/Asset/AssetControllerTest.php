@@ -171,6 +171,36 @@ final class AssetControllerTest extends TestCase
         $response->assertStatus(Response::HTTP_NOT_FOUND);
     }
 
+    // AssetController.destroy
+    public function test_asset_destroy_should_return_no_content_when_deleted(): void {
+        // given
+        $item = Asset::factory()->create();
+        $id = $item->uid;
+        $route = "/api/assets/$id";
+
+        $this->mock(AssetService::class, function ($mock): void {
+            $mock->shouldReceive('destroy')->once()->andReturn();
+        });
+
+        // when
+        $response = $this->delete($route);
+
+        // then
+        $response->assertStatus(Response::HTTP_NO_CONTENT);
+    }
+
+    public function test_asset_destroy_should_return_not_found_asset_when_it_does_not_exist(): void {
+        // given
+        $id = 1;
+        $route = "/api/assets/$id";
+
+        // when
+        $response = $this->delete($route);
+
+        // then
+        $response->assertStatus(Response::HTTP_NOT_FOUND);
+    }
+
     public static function assetUpdateDataProvider(): array
     {
         return [
