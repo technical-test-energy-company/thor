@@ -17,7 +17,7 @@ class TopologyController extends Controller
     }
 
     /**
-     * List the current topology of assets.
+     * List the current Topology of Assets.
      *
      * @response array{topology: array{edges: TopologyEdge[], nodes: TopologyNode[]}}
      */
