@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AssetController extends Controller
 {
-    private $assetService;
+    private AssetService $assetService;
 
     public function __construct(AssetService $assetService)
     {
