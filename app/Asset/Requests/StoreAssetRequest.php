@@ -21,7 +21,7 @@ class StoreAssetRequest extends FormRequest
             'status' => ['required', Rule::enum(AssetStatus::class)],
             'supplier' => 'required|string|max:100',
             'risk' => ['required', Rule::enum(RiskSeverity::class)],
-            'risk_score' => 'required|decimal:2|min:0|max:1',
+            'risk_score' => 'required|decimal:0,2|min:0|max:1',
         ];
     }
 }

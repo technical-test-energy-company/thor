@@ -21,7 +21,7 @@ class UpdateAssetRequest extends FormRequest
             'status' => ['filled', Rule::enum(AssetStatus::class)],
             'supplier' => 'filled|string|max:100',
             'risk' => ['filled', Rule::enum(RiskSeverity::class)],
-            'risk_score' => 'filled|decimal:2|min:0|max:1',
+            'risk_score' => 'filled|decimal:0,2|min:0|max:1',
         ];
     }
 }
