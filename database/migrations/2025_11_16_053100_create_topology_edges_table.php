@@ -1,20 +1,22 @@
 <?php
 
+use App\Topology\Model\TopologyEdge;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Infrastructure\Constants\Constants;
 
 return new class extends Migration
 {
     public function down(): void
     {
-        Schema::dropIfExists('topology_edges');
+        Schema::dropIfExists(TopologyEdge::TABLE_NAME);
     }
 
     public function up(): void
     {
-        Schema::create('topology_edges', function (Blueprint $table): void {
-            $table->string('id')->primary();
+        Schema::create(TopologyEdge::TABLE_NAME, function (Blueprint $table): void {
+            $table->string(Constants::ID)->primary();
             $table->string('type');
             $table->string('source');
             $table->string('target');

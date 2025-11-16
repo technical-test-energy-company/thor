@@ -6,6 +6,8 @@ use Infrastructure\Model\ReadOnlyModel;
 
 class TopologyNode extends ReadOnlyModel
 {
+    public const TABLE_NAME = 'topology_nodes';
+
     public function toArray()
     {
         $data = parent::toArray();
