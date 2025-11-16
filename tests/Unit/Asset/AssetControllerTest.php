@@ -30,8 +30,8 @@ final class AssetControllerTest extends TestCase
         $response = $this->get($route);
 
         // then
-        $response->assertJson([]);
         $response->assertOk();
+        $response->assertJson([]);
     }
 
     public function test_asset_index_returns_all_found_items_when_found(): void
@@ -53,9 +53,9 @@ final class AssetControllerTest extends TestCase
         $response = $this->get($route);
 
         // then
+        $response->assertOk();
         $response->assertJson($paginator->toArray());
         $response->assertJsonCount(2, 'data');
-        $response->assertOk();
     }
 
     // AssetController.store
@@ -73,8 +73,8 @@ final class AssetControllerTest extends TestCase
         $response = $this->post($route, $item->toArray());
 
         // then
-        $response->assertJson($item->toArray());
         $response->assertCreated();
+        $response->assertJson($item->toArray());
     }
 
     public function test_asset_store_should_throw_when_malformed_json_input(): void
@@ -91,7 +91,7 @@ final class AssetControllerTest extends TestCase
     }
 
     // AssetController.show
-    public function test_asset_store_should_return_found_asset_when_exists(): void
+    public function test_asset_show_should_return_found_asset_when_exists(): void
     {
         // given
         $item = Asset::factory()->create();
@@ -102,11 +102,11 @@ final class AssetControllerTest extends TestCase
         $response = $this->get($route);
 
         // then
-        $response->assertJson($item->toArray());
         $response->assertOk();
+        $response->assertJson($item->toArray());
     }
 
-    public function test_asset_store_should_return_not_found_asset_when_it_does_not_exist(): void
+    public function test_asset_show_should_return_not_found_asset_when_it_does_not_exist(): void
     {
         // given
         $id = 1;
@@ -123,21 +123,21 @@ final class AssetControllerTest extends TestCase
     public function test_asset_update_should_update_when_fields_are_valid(): void
     {
         // given
-        $item = Asset::factory()->create();
-        $id = $item->uid;
+        $original = Asset::factory()->create();
+        $id = $original->uid;
         $route = "/api/assets/$id";
-        $newItem = Asset::factory()->make();
+        $item = Asset::factory()->make();
 
-        $this->mock(AssetService::class, function ($mock) use ($newItem): void {
-            $mock->shouldReceive('update')->once()->andReturn($newItem);
+        $this->mock(AssetService::class, function ($mock) use ($item): void {
+            $mock->shouldReceive('update')->once()->andReturn($item);
         });
 
         // when
-        $response = $this->put($route, $newItem->toArray());
+        $response = $this->put($route, $item->toArray());
 
         // then
-        $response->assertJson($newItem->toArray());
         $response->assertOk();
+        $response->assertJson($item->toArray());
     }
 
     #[DataProvider('assetUpdateDataProvider')]
@@ -171,7 +171,8 @@ final class AssetControllerTest extends TestCase
     }
 
     // AssetController.destroy
-    public function test_asset_destroy_should_return_no_content_when_deleted(): void {
+    public function test_asset_destroy_should_return_no_content_when_deleted(): void
+    {
         // given
         $item = Asset::factory()->create();
         $id = $item->uid;
@@ -188,7 +189,8 @@ final class AssetControllerTest extends TestCase
         $response->assertNoContent();
     }
 
-    public function test_asset_destroy_should_return_not_found_asset_when_it_does_not_exist(): void {
+    public function test_asset_destroy_should_return_not_found_asset_when_it_does_not_exist(): void
+    {
         // given
         $id = 1;
         $route = "/api/assets/$id";
