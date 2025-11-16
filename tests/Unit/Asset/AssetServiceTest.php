@@ -5,6 +5,7 @@ namespace Tests\Unit\Asset;
 use App\Asset\Asset;
 use App\Asset\AssetService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Infrastructure\Constants\Constants;
 use Infrastructure\Http\Requests\IndexRequest;
 use Tests\TestCase;
 
@@ -53,7 +54,7 @@ class AssetServiceTest extends TestCase
     public function test_asset_store_should_store_and_return_new_asset_when_created(): void
     {
         // given
-        $item = Asset::factory()->make(['uid' => 's4']);
+        $item = Asset::factory()->make([Constants::PUBLIC_ID => 's4']);
 
         // when
         $response = $this->assetService->store($item->toArray());

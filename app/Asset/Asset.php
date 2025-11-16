@@ -6,6 +6,7 @@ use App\Asset\Enums\AssetDeviceType;
 use App\Asset\Enums\AssetStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Str;
+use Infrastructure\Constants\Constants;
 use Infrastructure\Enums\RiskSeverity;
 use Infrastructure\Model\BaseModel;
 
@@ -13,10 +14,12 @@ class Asset extends BaseModel
 {
     use HasFactory;
 
+    public const FOREIGN_ID = 'assetId';
+
     private const ID_PREFIX = 's';
 
     protected $fillable = [
-        'uid',
+        Constants::PUBLIC_ID,
         'name',
         'description',
         'device_type',
@@ -37,7 +40,7 @@ class Asset extends BaseModel
 
     public function getRouteKeyName(): string
     {
-        return self::ROUTE_KEY;
+        return Constants::PUBLIC_ID;
     }
 
     protected static function boot(): void

@@ -10,8 +10,6 @@ class BaseModel extends Model
 {
     use SoftDeletes;
 
-    protected const ROUTE_KEY = 'uid';
-
     protected $hidden = [
         Constants::ID,
         Constants::CREATED_AT,

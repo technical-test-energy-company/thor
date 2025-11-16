@@ -6,6 +6,7 @@ use App\Asset\Asset;
 use App\Asset\Enums\AssetDeviceType;
 use App\Asset\Enums\AssetStatus;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Infrastructure\Constants\Constants;
 use Infrastructure\Enums\RiskSeverity;
 
 class AssetFactory extends Factory
@@ -15,7 +16,7 @@ class AssetFactory extends Factory
     public function definition(): array
     {
         return [
-            'uid' => 's'.fake()->numberBetween(1, 100),
+            Constants::PUBLIC_ID => 's'.fake()->numberBetween(1, 100),
             'name' => fake()->word(),
             'description' => fake()->text(),
             'device_type' => fake()->randomElement(AssetDeviceType::cases()),

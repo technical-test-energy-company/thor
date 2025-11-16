@@ -5,6 +5,7 @@ use App\Asset\Enums\AssetStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Infrastructure\Constants\Constants;
 use Infrastructure\Enums\RiskSeverity;
 
 return new class extends Migration
@@ -18,7 +19,7 @@ return new class extends Migration
     {
         Schema::create('assets', function (Blueprint $table): void {
             $table->id();
-            $table->text('uid')->unique();
+            $table->text(Constants::PUBLIC_ID)->unique();
             $table->string('name', length: 100);
             $table->string('description');
             $table->enum('device_type', AssetDeviceType::cases());

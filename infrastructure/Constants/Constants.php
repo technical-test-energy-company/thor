@@ -6,6 +6,8 @@ class Constants
 {
     public const ID = 'id';
 
+    public const PUBLIC_ID = 'uid';
+
     public const CREATED_AT = 'created_at';
 
     public const UPDATED_AT = 'updated_at';
