@@ -6,10 +6,11 @@ use App\Asset\Asset;
 use App\Asset\AssetService;
 use Illuminate\Pagination\CursorPaginator;
 use Infrastructure\Http\Requests\IndexRequest;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
 
-class AssetControllerTest extends TestCase
+final class AssetControllerTest extends TestCase
 {
     // AssetController.index
     public function test_asset_index_returns_empty_array_when_no_results_found(): void
@@ -106,7 +107,7 @@ class AssetControllerTest extends TestCase
         $response->assertJson($item->toArray());
     }
 
-    public function test_asset_store_should_return_not_found_asset_when_does_not_exist(): void
+    public function test_asset_store_should_return_not_found_asset_when_it_does_not_exist(): void
     {
         // given
         $id = 1;
@@ -117,5 +118,72 @@ class AssetControllerTest extends TestCase
 
         // then
         $response->assertStatus(Response::HTTP_NOT_FOUND);
+    }
+
+    // AssetController.update
+    public function test_asset_update_should_update_when_fields_are_valid(): void
+    {
+        // given
+        $item = Asset::factory()->create();
+        $id = $item->uid;
+        $route = "/api/assets/$id";
+        $newItem = Asset::factory()->make();
+
+        $this->mock(AssetService::class, function ($mock) use ($newItem): void {
+            $mock->shouldReceive('update')->once()->andReturn($newItem);
+        });
+
+        // when
+        $response = $this->put($route, $newItem->toArray());
+
+        // then
+        $response->assertStatus(Response::HTTP_OK);
+        $response->assertJson($newItem->toArray());
+    }
+
+    #[DataProvider('assetUpdateDataProvider')]
+    public function test_asset_update_should_throw_exception_when_fields_are_invalid($attribute, $value): void
+    {
+        // given
+        $item = Asset::factory()->create();
+        $id = $item->uid;
+        $route = "/api/assets/$id";
+        $payload = [$attribute => $value];
+
+        // when
+        $response = $this->put($route, $payload);
+
+        // then
+        $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
+    }
+
+    public function test_asset_update_should_return_not_found_asset_when_it_does_not_exist(): void
+    {
+        // given
+        $id = 1;
+        $route = "/api/assets/$id";
+        $item = Asset::factory()->make();
+
+        // when
+        $response = $this->put($route, $item->toArray());
+
+        // then
+        $response->assertStatus(Response::HTTP_NOT_FOUND);
+    }
+
+    public static function assetUpdateDataProvider(): array
+    {
+        return [
+            ['name', null],
+            ['description', null],
+            ['device_type', 'non-existent-device-type'],
+            ['ip_address', 'this-is-not-an-ip-address'],
+            ['location', 'non-existent-country'],
+            ['status', 'invalid-status'],
+            ['supplier', null],
+            ['risk', 'wow-very-high-risk'],
+            ['risk_score', 500],
+            ['risk_score', -1],
+        ];
     }
 }
