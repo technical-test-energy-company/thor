@@ -1,5 +1,6 @@
 <?php
 
+use App\Asset\Asset;
 use App\Asset\Enums\AssetDeviceType;
 use App\Asset\Enums\AssetStatus;
 use Illuminate\Database\Migrations\Migration;
@@ -12,12 +13,12 @@ return new class extends Migration
 {
     public function down(): void
     {
-        Schema::dropIfExists('assets');
+        Schema::dropIfExists(Asset::TABLE_NAME);
     }
 
     public function up(): void
     {
-        Schema::create('assets', function (Blueprint $table): void {
+        Schema::create(Asset::TABLE_NAME, function (Blueprint $table): void {
             $table->id();
             $table->text(Constants::PUBLIC_ID)->unique();
             $table->string('name', length: 100);

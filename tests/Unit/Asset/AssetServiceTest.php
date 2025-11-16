@@ -61,7 +61,7 @@ class AssetServiceTest extends TestCase
 
         // then
         $this->assertEquals($item->toArray(), $response->toArray());
-        $this->assertDatabaseHas('assets', $response->toArray());
+        $this->assertDatabaseHas(Asset::TABLE_NAME, $response->toArray());
     }
 
     // AssetService.show
@@ -76,7 +76,7 @@ class AssetServiceTest extends TestCase
 
         // then
         $this->assertEquals($item->toArray(), $response->toArray());
-        $this->assertDatabaseHas('assets', $response->toArray());
+        $this->assertDatabaseHas(Asset::TABLE_NAME, $response->toArray());
     }
 
     // AssetService.destroy
@@ -89,6 +89,6 @@ class AssetServiceTest extends TestCase
         $this->assetService->destroy($asset);
 
         // then
-        $this->assertSoftDeleted('assets', $asset->toArray());
+        $this->assertSoftDeleted(Asset::TABLE_NAME, $asset->toArray());
     }
 }

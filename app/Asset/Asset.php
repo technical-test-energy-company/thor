@@ -16,6 +16,8 @@ class Asset extends BaseModel
 
     public const FOREIGN_ID = 'assetId';
 
+    public const TABLE_NAME = 'assets';
+
     private const ID_PREFIX = 's';
 
     protected $fillable = [
