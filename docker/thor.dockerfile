@@ -19,6 +19,10 @@ RUN docker-php-ext-install \
     pdo_pgsql \
     zip
 
+# install datadog
+RUN curl -LO https://github.com/DataDog/dd-trace-php/releases/latest/download/datadog-setup.php
+RUN php datadog-setup.php --php-bin=all --enable-appsec --enable-profiling
+
 # clear cache
 RUN apt clean && rm -rf /var/lib/apt/lists/*
 
