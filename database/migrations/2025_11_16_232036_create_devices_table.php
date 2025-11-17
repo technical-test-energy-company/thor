@@ -17,7 +17,7 @@ return new class extends Migration
 
     public function up(): void
     {
-        Schema::create(DEVICE::TABLE_NAME, function (Blueprint $table) {
+        Schema::create(DEVICE::TABLE_NAME, function (Blueprint $table): void {
             $table->string(Constants::ID)->primary();
             $table->string('name', length: 100);
             $table->string('type', length: 100);

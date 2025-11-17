@@ -16,7 +16,7 @@ return new class extends Migration
 
     public function up(): void
     {
-        Schema::create(Gateway::TABLE_NAME, function (Blueprint $table) {
+        Schema::create(Gateway::TABLE_NAME, function (Blueprint $table): void {
             $table->string(Constants::ID)->primary();
             $table->string('name', length: 100);
             $table->string(Asset::FOREIGN_ID);

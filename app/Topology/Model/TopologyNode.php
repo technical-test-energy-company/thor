@@ -8,7 +8,7 @@ class TopologyNode extends ReadOnlyModel
 {
     public const TABLE_NAME = 'topology_nodes';
 
-    public function toArray()
+    public function toArray(): array
     {
         $data = parent::toArray();
 
