@@ -8,6 +8,8 @@ class Constants
 
     public const PUBLIC_ID = 'uid';
 
+    public const CVE_ID = 'cve_id';
+
     public const CREATED_AT = 'created_at';
 
     public const UPDATED_AT = 'updated_at';
