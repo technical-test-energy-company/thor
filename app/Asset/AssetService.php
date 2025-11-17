@@ -7,7 +7,7 @@ use Infrastructure\Constants\Constants;
 
 class AssetService
 {
-    public function index($data): CursorPaginator
+    public function index(array $data): CursorPaginator
     {
         $limit = $data['limit'];
         $response = Asset::orderBy(Constants::ID)->cursorPaginate($limit);
@@ -15,14 +15,14 @@ class AssetService
         return $response;
     }
 
-    public function store($data): Asset
+    public function store(array $data): Asset
     {
         $asset = Asset::create($data);
 
         return $asset;
     }
 
-    public function update($data, Asset $asset): Asset
+    public function update(array $data, Asset $asset): Asset
     {
         $asset->updateOrFail($data);
 
