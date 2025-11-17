@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string(Constants::ID)->primary();
             $table->string('name', length: 100);
             $table->string('type', length: 100);
-            $table->string(Asset::FOREIGN_ID);
-            $table->string(Gateway::FOREIGN_ID);
+            $table->text(Asset::FOREIGN_ID);
+            $table->text(Gateway::FOREIGN_ID);
 
             $table->foreign(Asset::FOREIGN_ID)
                 ->references(Constants::PUBLIC_ID)
