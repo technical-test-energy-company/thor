@@ -33,7 +33,7 @@ class AssetController extends Controller
     }
 
     /**
-     * Create a new asset.
+     * Create a new Asset.
      */
     public function store(StoreAssetRequest $request): Response
     {
