@@ -12,8 +12,12 @@ class NvdApiMissingFieldsException extends Exception
     ) {
         $message = "Unable to fetch vulnerability information for $cveId";
 
-        if (! empty($data)) {
-            $missingList = implode(', ', $data);
+        $missing = array_keys(
+            array_filter($data, fn ($value) => is_null($value))
+        );
+
+        if (! empty($missing)) {
+            $missingList = implode(', ', $missing);
             $message .= " | Missing fields: {$missingList}";
         }
 
