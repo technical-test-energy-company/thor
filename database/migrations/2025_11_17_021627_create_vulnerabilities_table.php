@@ -23,7 +23,7 @@ return new class extends Migration
             $table->text(Constants::CVE_ID)->unique();
             $table->text(Asset::FOREIGN_ID);
             $table->enum('severity', RiskSeverity::cases())->nullable();
-            $table->string('description')->nullable();
+            $table->string('description', length: 1000)->nullable();
             $table->dateTime('date_published')->nullable();
             $table->string('scope', length: 100)->nullable();
             $table->text('refId')->nullable();
