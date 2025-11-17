@@ -28,8 +28,8 @@ return new class extends Migration
             $table->string('location', length: 2);
             $table->enum('status', AssetStatus::cases());
             $table->string('supplier', length: 100);
-            $table->enum('risk', RiskSeverity::cases());
-            $table->decimal('risk_score');
+            $table->enum('risk', RiskSeverity::cases())->nullable();
+            $table->decimal('risk_score')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
