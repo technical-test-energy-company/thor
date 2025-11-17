@@ -1,5 +1,6 @@
 <?php
 
+use App\Topology\Model\TopologyEdge;
 use App\Topology\Model\TopologyNode;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -10,11 +11,19 @@ return new class extends Migration
 {
     public function down(): void
     {
+        Schema::dropIfExists(TopologyEdge::TABLE_NAME);
         Schema::dropIfExists(TopologyNode::TABLE_NAME);
     }
 
     public function up(): void
     {
+        Schema::create(TopologyEdge::TABLE_NAME, function (Blueprint $table): void {
+            $table->string(Constants::ID)->primary();
+            $table->string('type');
+            $table->string('source');
+            $table->string('target');
+        });
+
         Schema::create(TopologyNode::TABLE_NAME, function (Blueprint $table): void {
             $table->string(Constants::ID)->primary();
             $table->string('type');
