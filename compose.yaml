@@ -10,7 +10,7 @@ services:
       - postgres
     ports:
       - 8000:8000
-    command: composer local
+    command: composer api
 
   postgres:
     container_name: odin
