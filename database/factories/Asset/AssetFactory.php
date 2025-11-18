@@ -25,7 +25,7 @@ class AssetFactory extends Factory
             'status' => fake()->randomElement(AssetStatus::cases()),
             'supplier' => fake()->company(),
             'risk' => fake()->randomElement(RiskSeverity::cases()),
-            'risk_score' => number_format((fake()->numberBetween(0, 100) / 100), 2),
+            'risk_score' => fakeRiskScore(),
         ];
     }
 }
