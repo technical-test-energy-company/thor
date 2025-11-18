@@ -5,8 +5,10 @@ namespace Tests\Unit\Asset;
 use App\Asset\Asset;
 use App\Asset\AssetService;
 use App\User\User;
+use App\Vulnerability\Vulnerability;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Infrastructure\Constants\Constants;
+use Infrastructure\Enums\RiskSeverity;
 use Infrastructure\Http\Requests\IndexRequest;
 use Tests\TestCase;
 
@@ -94,5 +96,21 @@ class AssetServiceTest extends TestCase
 
         // then
         $this->assertSoftDeleted(Asset::TABLE_NAME, $asset->toArray());
+    }
+
+    // AssetService.calculateRisk
+    public function test_asset_calculate_risk_should_calculate_risk_correctly(): void
+    {
+        // given
+        $asset = Asset::factory()->create();
+        $assetId = $asset->uid;
+        Vulnerability::factory()->withAsset($assetId)->withRisk(5.0, RiskSeverity::Medium)->create();
+        Vulnerability::factory()->withAsset($assetId)->withRisk(9.0, RiskSeverity::High)->create();
+
+        // when
+        $response = $this->assetService->calculateRisk($asset);
+
+        $this->assertEquals(0.74, $response->risk_score);
+        $this->assertEquals(RiskSeverity::High, $response->risk);
     }
 }
