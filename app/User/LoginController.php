@@ -12,6 +12,8 @@ class LoginController extends Controller
 {
     /**
      * Authenticate an User.
+     *
+     * @unauthenticated
      */
     public function authenticate(UserLoginRequest $request): Response
     {

@@ -9,6 +9,8 @@ class GatewayController extends Controller
 {
     /**
      * List all available Gateways.
+     *
+     * @unauthenticated
      */
     public function index(): Collection
     {
@@ -19,6 +21,8 @@ class GatewayController extends Controller
 
     /**
      * Retrieve a Gateway.
+     *
+     * @unauthenticated
      */
     public function show(Gateway $gateway): Gateway
     {

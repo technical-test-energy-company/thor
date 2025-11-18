@@ -19,6 +19,8 @@ class TopologyController extends Controller
     /**
      * List the current Topology of Assets.
      *
+     * @unauthenticated
+     *
      * @response array{topology: array{edges: TopologyEdge[], nodes: TopologyNode[]}}
      */
     public function index(): Response

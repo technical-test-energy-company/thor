@@ -9,6 +9,8 @@ class DeviceController extends Controller
 {
     /**
      * List all available Devices.
+     *
+     * @unauthenticated
      */
     public function index(): Collection
     {
@@ -19,6 +21,8 @@ class DeviceController extends Controller
 
     /**
      * Retrieve a Device.
+     *
+     * @unauthenticated
      */
     public function show(Device $device): Device
     {
