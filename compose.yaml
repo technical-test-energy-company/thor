@@ -1,15 +1,21 @@
+networks:
+  asgard:
+    external: true
+
 services:
-  app:
+  thor:
     container_name: thor
     build:
-      context: ./docker
-      dockerfile: thor.dockerfile
+      context: .
+      dockerfile: docker/thor.dockerfile
     volumes:
       - .:/var/www/html/thor
     depends_on:
       - postgres
     ports:
       - 8000:8000
+    networks:
+      - asgard
     command: composer thor-api
 
   postgres:
@@ -22,3 +28,5 @@ services:
       POSTGRES_PASSWORD: postgres
     ports:
       - 5432:5432
+    networks:
+      - asgard
