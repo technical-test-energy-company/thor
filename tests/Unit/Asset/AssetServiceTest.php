@@ -4,6 +4,7 @@ namespace Tests\Unit\Asset;
 
 use App\Asset\Asset;
 use App\Asset\AssetService;
+use App\User\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Infrastructure\Constants\Constants;
 use Infrastructure\Http\Requests\IndexRequest;
@@ -13,12 +14,15 @@ class AssetServiceTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected AssetService $assetService;
+    private AssetService $assetService;
+
+    private User $user;
 
     protected function setUp(): void
     {
         parent::setUp();
         $this->assetService = app(AssetService::class);
+        $this->user = User::factory()->create();
     }
 
     protected function tearDown(): void
@@ -86,7 +90,7 @@ class AssetServiceTest extends TestCase
         $asset = Asset::factory()->create();
 
         // when
-        $this->assetService->destroy($asset);
+        $this->assetService->destroy($asset, $this->user);
 
         // then
         $this->assertSoftDeleted(Asset::TABLE_NAME, $asset->toArray());

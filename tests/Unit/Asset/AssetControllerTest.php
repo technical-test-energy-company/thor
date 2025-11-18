@@ -4,13 +4,29 @@ namespace Tests\Unit\Asset;
 
 use App\Asset\Asset;
 use App\Asset\AssetService;
+use App\User\User;
 use Illuminate\Pagination\CursorPaginator;
 use Infrastructure\Http\Requests\IndexRequest;
+use Laravel\Sanctum\Sanctum;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 final class AssetControllerTest extends TestCase
 {
+    private User $user;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->user = User::factory()->create();
+        Sanctum::actingAs($this->user);
+    }
+
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+    }
+
     // AssetController.index
     public function test_asset_index_returns_empty_array_when_no_results_found(): void
     {
@@ -200,6 +216,25 @@ final class AssetControllerTest extends TestCase
 
         // then
         $response->assertNotFound();
+    }
+
+    public function test_asset_calculate_risk_should_calculate_risk_correctly(): void
+    {
+        // given
+        $item = Asset::factory()->create();
+        $id = $item->uid;
+        $route = "/api/assets/$id/calculate-risk";
+
+        $this->mock(AssetService::class, function ($mock) use ($item): void {
+            $mock->shouldReceive('calculateRisk')->once()->andReturn($item);
+        });
+
+        // when
+        $response = $this->post($route, $item->toArray());
+
+        // then
+        $response->assertOk();
+        $response->assertJson($item->toArray());
     }
 
     public static function assetUpdateDataProvider(): array

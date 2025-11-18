@@ -3,8 +3,10 @@
 namespace Tests\Feature\Asset;
 
 use App\Asset\Asset;
+use App\User\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Infrastructure\Constants\Constants;
+use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
 class AssetFeatureTest extends TestCase
@@ -12,6 +14,20 @@ class AssetFeatureTest extends TestCase
     use RefreshDatabase;
 
     private const BASE_ROUTE = '/api/assets/';
+
+    private User $user;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->user = User::factory()->create();
+        Sanctum::actingAs($this->user);
+    }
+
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+    }
 
     public function test_asset_feature_test_should_create_read_update_and_delete(): void
     {
