@@ -5,6 +5,7 @@ namespace Tests\Unit\Asset;
 use App\Asset\Asset;
 use App\Asset\AssetService;
 use App\User\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Pagination\CursorPaginator;
 use Infrastructure\Http\Requests\IndexRequest;
 use Laravel\Sanctum\Sanctum;
@@ -13,6 +14,8 @@ use Tests\TestCase;
 
 final class AssetControllerTest extends TestCase
 {
+    use RefreshDatabase;
+
     private User $user;
 
     protected function setUp(): void
