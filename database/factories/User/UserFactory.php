@@ -2,12 +2,12 @@
 
 namespace Database\Factories\User;
 
-use App\Asset\Asset;
+use App\User\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class UserFactory extends Factory
 {
-    protected $model = Asset::class;
+    protected $model = User::class;
 
     public function definition(): array
     {
