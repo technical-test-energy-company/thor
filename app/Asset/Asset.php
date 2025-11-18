@@ -6,7 +6,6 @@ use App\Asset\Enums\AssetDeviceType;
 use App\Asset\Enums\AssetStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Str;
-use Infrastructure\Constants\Constants;
 use Infrastructure\Enums\RiskSeverity;
 use Infrastructure\Model\BaseModel;
 
@@ -21,7 +20,6 @@ class Asset extends BaseModel
     public const ID_PREFIX = 's';
 
     protected $fillable = [
-        Constants::PUBLIC_ID,
         'name',
         'description',
         'device_type',
