@@ -16,7 +16,7 @@ class AssetFactory extends Factory
     public function definition(): array
     {
         return [
-            Constants::PUBLIC_ID => 's'.fake()->numberBetween(1, 100),
+            Constants::PUBLIC_ID => Asset::ID_PREFIX.fake()->numberBetween(1, 100),
             'name' => fake()->word(),
             'description' => fake()->text(),
             'device_type' => fake()->randomElement(AssetDeviceType::cases()),

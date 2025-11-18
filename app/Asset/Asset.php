@@ -18,7 +18,7 @@ class Asset extends BaseModel
 
     public const TABLE_NAME = 'assets';
 
-    private const ID_PREFIX = 's';
+    public const ID_PREFIX = 's';
 
     protected $fillable = [
         Constants::PUBLIC_ID,
