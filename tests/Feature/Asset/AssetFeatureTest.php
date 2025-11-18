@@ -36,7 +36,7 @@ class AssetFeatureTest extends TestCase
         $response_index_1->assertJson([]);
 
         // store - create first item
-        $item_store_1 = Asset::factory()->make([Constants::PUBLIC_ID => 's8']);
+        $item_store_1 = Asset::factory()->make([Constants::PUBLIC_ID => 's46']);
         $id_store_1 = $item_store_1->uid;
         $response_store_1 = $this->post(self::BASE_ROUTE, $item_store_1->toArray());
         $response_store_1->assertJson($item_store_1->toArray());
@@ -46,7 +46,7 @@ class AssetFeatureTest extends TestCase
         $response_show_1->assertJson($item_store_1->toArray());
 
         // store - create second item
-        $item_store_2 = Asset::factory()->make([Constants::PUBLIC_ID => 's9']);
+        $item_store_2 = Asset::factory()->make([Constants::PUBLIC_ID => 's47']);
         $id_store_2 = $item_store_2->uid;
         $response_store_2 = $this->post(self::BASE_ROUTE, $item_store_2->toArray());
         $response_store_2->assertJson($item_store_2->toArray());

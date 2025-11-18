@@ -60,7 +60,7 @@ class AssetServiceTest extends TestCase
     public function test_asset_store_should_store_and_return_new_asset_when_created(): void
     {
         // given
-        $item = Asset::factory()->make([Constants::PUBLIC_ID => 's4']);
+        $item = Asset::factory()->make([Constants::PUBLIC_ID => 's18']);
 
         // when
         $response = $this->assetService->store($item->toArray());
@@ -70,12 +70,12 @@ class AssetServiceTest extends TestCase
         $this->assertDatabaseHas(Asset::TABLE_NAME, $response->toArray());
     }
 
-    // AssetService.show
+    // AssetService.update
     public function test_asset_update_should_update_and_return_new_asset_when_updated(): void
     {
         // given
         $original = Asset::factory()->create();
-        $item = Asset::factory()->make();
+        $item = Asset::factory()->make([Constants::PUBLIC_ID => 's19']);
 
         // when
         $response = $this->assetService->update($item->toArray(), $original);
