@@ -10,7 +10,7 @@ services:
       - postgres
     ports:
       - 8000:8000
-    command: composer api
+    command: composer thor-api
 
   postgres:
     container_name: odin
