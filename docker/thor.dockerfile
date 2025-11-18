@@ -12,12 +12,18 @@ RUN apt install -y \
     unzip \
     libpq-dev \
     libzip-dev \
-    zlib1g-dev
+    zlib1g-dev \
+    libbrotli-dev
 
 RUN docker-php-ext-install \
     pdo \
     pdo_pgsql \
+    pcntl \
     zip
+
+# install swoole
+RUN printf "\n" | pecl install swoole
+RUN docker-php-ext-enable swoole
 
 # install datadog
 RUN curl -LO https://github.com/DataDog/dd-trace-php/releases/latest/download/datadog-setup.php

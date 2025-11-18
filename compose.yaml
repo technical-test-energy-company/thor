@@ -17,8 +17,8 @@ services:
     image: postgres:latest
     restart: always
     environment:
-      - POSTGRES_DB=odin
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      POSTGRES_DB: odin
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
     ports:
       - 5432:5432
