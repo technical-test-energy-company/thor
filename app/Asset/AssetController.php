@@ -79,4 +79,17 @@ class AssetController extends Controller
 
         return response()->noContent();
     }
+
+    /**
+     * Calculate the risk score of an Asset based on it's Vulnerabilities.
+     */
+    public function calculateRisk(Asset $asset): Response
+    {
+        $response = $this->assetService->calculateRisk($asset);
+
+        /**
+         * @body Asset.
+         */
+        return response($response);
+    }
 }

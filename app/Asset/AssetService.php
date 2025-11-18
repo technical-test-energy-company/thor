@@ -2,8 +2,11 @@
 
 namespace App\Asset;
 
+use App\Vulnerability\Vulnerability;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\CursorPaginator;
 use Infrastructure\Constants\Constants;
+use Infrastructure\Enums\RiskSeverity;
 
 class AssetService
 {
@@ -32,5 +35,39 @@ class AssetService
     public function destroy(Asset $asset): void
     {
         $asset->deleteOrFail();
+    }
+
+    public function calculateRisk(Asset $asset): Asset
+    {
+        $vulnerabilities = Vulnerability::where(Asset::FOREIGN_ID, $asset->uid)->get();
+
+        $riskScore = $this->getRiskScore($vulnerabilities);
+        $severity = RiskSeverity::fromRiskScore($riskScore);
+
+        $data = [
+            'risk' => $severity,
+            'risk_score' => $riskScore,
+        ];
+        $updated = $this->update($data, $asset);
+
+        return $updated;
+    }
+
+    private function getRiskScore(Collection $vulnerabilities): float
+    {
+        $riskScore = 0.0;
+        $riskWeight = 0;
+
+        $vulnerabilities->each(function ($vulnerability) use (&$riskScore, &$riskWeight): void {
+            $score = $vulnerability->cvss / RiskSeverity::SCORE_NORMALIZATION_DIVISOR;
+            $weight = RiskSeverity::WEIGHTS[$vulnerability->severity->value];
+
+            $riskScore += $score * $weight;
+            $riskWeight += $weight;
+        });
+
+        $result = round($riskScore / $riskWeight, 2);
+
+        return $result;
     }
 }
