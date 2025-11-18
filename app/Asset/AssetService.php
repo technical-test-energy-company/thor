@@ -2,9 +2,11 @@
 
 namespace App\Asset;
 
+use App\User\User;
 use App\Vulnerability\Vulnerability;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\CursorPaginator;
+use Illuminate\Support\Facades\Log;
 use Infrastructure\Constants\Constants;
 use Infrastructure\Enums\RiskSeverity;
 
@@ -32,9 +34,14 @@ class AssetService
         return $asset->fresh();
     }
 
-    public function destroy(Asset $asset): void
+    public function destroy(Asset $asset, User $user): void
     {
         $asset->deleteOrFail();
+
+        $userId = $user->id;
+        $assetId = $asset->id;
+        $message = "User with id $userId deleted Asset with id $assetId";
+        Log::notice($message);
     }
 
     public function calculateRisk(Asset $asset): Asset

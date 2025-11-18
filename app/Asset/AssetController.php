@@ -75,7 +75,8 @@ class AssetController extends Controller
      */
     public function destroy(Asset $asset): Response
     {
-        $this->assetService->destroy($asset);
+        $user = auth('sanctum')->user();
+        $this->assetService->destroy($asset, $user);
 
         return response()->noContent();
     }
