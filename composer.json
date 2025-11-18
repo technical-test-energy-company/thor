@@ -30,7 +30,10 @@
       "Infrastructure\\": "infrastructure/",
       "Database\\Factories\\": "database/factories/",
       "Database\\Seeders\\": "database/seeders/"
-    }
+    },
+    "files": [
+      "infrastructure/Support/helpers.php"
+    ]
   },
   "autoload-dev": {
     "psr-4": {
