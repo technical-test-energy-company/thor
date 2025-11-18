@@ -14,13 +14,15 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        $this->call([
-            AssetSeeder::class,
-            VulnerabilitySeeder::class,
-            GatewaySeeder::class,
-            DeviceSeeder::class,
-            TopologyEdgeSeeder::class,
-            TopologyNodeSeeder::class,
-        ]);
+        if (! app()->environment('production')) {
+            $this->call([
+                AssetSeeder::class,
+                VulnerabilitySeeder::class,
+                GatewaySeeder::class,
+                DeviceSeeder::class,
+                TopologyEdgeSeeder::class,
+                TopologyNodeSeeder::class,
+            ]);
+        }
     }
 }
