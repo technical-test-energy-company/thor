@@ -13,10 +13,8 @@ class TopologyService
         $nodes = TopologyNode::all();
 
         $response = [
-            'topology' => [
-                'edges' => $edges,
-                'nodes' => $nodes,
-            ],
+            'edges' => $edges,
+            'nodes' => $nodes,
         ];
 
         return $response;
