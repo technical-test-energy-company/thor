@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class IndexRequest extends FormRequest
 {
-    public const DEFAULT_LIMIT = 25;
+    public const DEFAULT_LIMIT = 100;
 
     protected function prepareForValidation(): void
     {
