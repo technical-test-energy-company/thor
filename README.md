@@ -38,6 +38,14 @@ docker compose up
 > [!TIP]
 > For more information about why the network is needed, see [the organization page](https://github.com/technical-test-energy-company).
 
+### endpoints
+
+The library [Scramble](https://scramble.dedoc.co/) gives the application access to a Swagger style endpoint documentation, which can be acesses via ${api_url}/docs/api.
+
+The page contains information about the expected payloads, headers and responses for each public endpoint.
+
+There is also the possibility of getting an OpenAPI JSON from the docs page, simply by accessing ${api_url}/docs/api.json.
+
 ### documentation
 
 To see more information about the technical choices made in this project, as well as, what I would do if I had more, please read [this document](https://github.com/technical-test-energy-company/.github/blob/master/documents/technical-report.pdf).
