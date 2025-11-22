@@ -40,4 +40,4 @@ docker compose up
 
 ### documentation
 
-To see more information about the technical choices made in this project, as well as, what I would do if I had more, please read [this document](https://github.com/technical-test-energy-company/.github/blob/master/technical-report.pdf).
+To see more information about the technical choices made in this project, as well as, what I would do if I had more, please read [this document](https://github.com/technical-test-energy-company/.github/blob/master/documents/technical-report.pdf).
