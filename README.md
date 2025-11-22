@@ -22,7 +22,7 @@ After the envfile is created, some information needs to be filled before kicking
 There are two ways of running the application, either locally by running the following command:
 
 ```sh
-composer run dev
+composer thor-api
 ```
 
 > [!IMPORTANT]
